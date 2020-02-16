@@ -75,4 +75,3 @@ int main(){
 	ll t;
     cin>>t;
     while(t--) solve();
-}git 
