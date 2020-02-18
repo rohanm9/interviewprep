@@ -37,7 +37,7 @@ int main(){
 	fastio;
     ll n,x;
     cin>>n>>x;
-    ll array[n];
+    ll array[n]_;
     For(i,0,n){
         cin>>array[i];
     }
