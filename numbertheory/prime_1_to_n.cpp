@@ -59,7 +59,7 @@ void solve(){
     print("");
 }
 int main(){
-	fastio;
+    fastio;
     solve();
 }
 // to use __int128_t take input as string then convert it

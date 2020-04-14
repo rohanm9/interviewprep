@@ -34,3 +34,25 @@ int main(){
     print("");
     print(ans);
 }
+
+
+// alternate way is to use binary search
+// ll ceil_index(ll low,ll high,ll temp[],ll key){
+//     ll mid,ans=high;
+//     while(low<=high){
+//         mid=low+(high-low)/2;
+//         if(temp[mid]>=key) ans=mid,high=mid-1;
+//         else low=mid+1;
+//     }
+//     return ans;
+// }
+// ll delta(ll a[],ll temp[],ll n){
+//     ll len=1;
+//     temp[0]=a[0];
+//     For(i,1,n){
+//         if(a[i]<temp[0]) temp[0]=a[i];
+//         else if(a[i]>temp[len-1]) temp[len]=a[i],len++;
+//         else temp[ceil_index(0,len-1,temp,a[i])]=a[i];
+//     }
+//     return len;
+// }
