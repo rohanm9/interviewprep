@@ -6,6 +6,7 @@ using namespace std;
 #define INF LLONG_MAX
 #define For(i,a,b) for(ll i=a;i<b;i++)
 #define rFor(i,a,b) for(ll i=a;i>=b;i--)
+#define print(a) cout<<a<<"\n";
 void solve(){
     ll n,a[3];
     cin>>n;
