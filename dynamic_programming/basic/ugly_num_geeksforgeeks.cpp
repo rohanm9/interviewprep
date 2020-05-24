@@ -55,5 +55,6 @@ void solve(){
     print(dp[n-1]);
 }
 int main(){
+    fastio;
     solve();
 }
