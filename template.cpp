@@ -2,7 +2,7 @@
 //DA-IICT,Gandhinagar
 #include<bits/stdc++.h>
 using namespace std;
-#define ll int
+#define ll long long
 #define NINF LLONG_MIN
 #define INF LLONG_MAX
 #define For(i,a,b) for(ll i=a;i<b;i++)
