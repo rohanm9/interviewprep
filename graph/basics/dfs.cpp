@@ -18,7 +18,7 @@ void DFS(ll v){
     cout<<v<<" ";
     visited[v]=true;
     for(auto &u: adjList[v]){
-        if(visited[u]!=true){
+        if(!visited[u]){
             DFS(u);
         }
     }

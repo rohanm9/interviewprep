@@ -33,14 +33,14 @@ const ll mod=1e9+7;
 //     }
 //     print(i);
 // }
-
+// can also be solved using a set or priority queue
 void solve(){
     ll n;
     cin>>n;
-    ll dp[n];
+    ll dp[n+1];
     dp[0]=1;
     ll i2=0,i3=0,i5=0;
-    For(i,1,n){
+    For(i,1,n+1){
        dp[i]=min(2LL*dp[i2],min(3LL*dp[i3],5LL*dp[i5]));
        if(2LL*dp[i2]==dp[i]){
            i2++;
@@ -52,7 +52,7 @@ void solve(){
            i5++;
        }
     }
-    print(dp[n-1]);
+    print(dp[n]);
 }
 int main(){
     fastio;
