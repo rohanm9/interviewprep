@@ -18,14 +18,14 @@ using namespace std;
 const ll mod=1e9+7;
 vector<vector<ll>>adjList;
 vector<bool>visited;
-// to check whether there is backedge or not we are going to make use of recStack; 
+// to check whether there is backedge or not we are going to make use of recStack
 vector<bool>recStack;
 bool isCycleUtil(ll v){
     if(!visited[v]){
         visited[v]=true;
         recStack[v]=true;
         for(auto &u:adjList[v]){
-            // because all path possible to v will be explored at once 
+            // because all possible path from u will be explored at once  
             if(!visited[u]){
                 if(isCycleUtil(u)){
                     return true;
@@ -48,7 +48,7 @@ void solve(){
     For(i,0,m){
         ll a,b;
         cin>>a>>b;
-        // since it a directed graph;
+        // since it a directed graph
         adjList[a].pb(b);
     }
     For(i,1,n+1){

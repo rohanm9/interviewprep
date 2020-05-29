@@ -18,27 +18,6 @@ using namespace std;
 const ll mod=1e9+7;
 vector<vector<ll>>adjList;
 vector<bool>visited;
-// to check whether there is backedge or not we are going to make use of recStack; 
-vector<bool>recStack;
-bool isCycleUtil(ll v){
-    if(!visited[v]){
-        visited[v]=true;
-        recStack[v]=true;
-        for(auto &u:adjList[v]){
-            // because all possible path from u will be explored at once 
-            if(!visited[u]){
-                if(isCycleUtil(u)){
-                    return true;
-                }
-            }
-            else if(recStack[u]){
-                return true;
-            }
-        }
-    }
-    recStack[v]=false;
-    return false;
-}
 void solve(){
     ll n,m;
     cin>>n>>m;
@@ -52,11 +31,7 @@ void solve(){
         adjList[a].pb(b);
     }
     For(i,1,n+1){
-        // calling again and again because graph may be disconnected
-        if(isCycleUtil(i)){
-            print("YES");
-            return;
-        }
+        
     }
     print("NO");
 }
