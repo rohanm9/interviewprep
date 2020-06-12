@@ -18,25 +18,20 @@ using namespace std;
 const ll mod=1e9+7;
 vector<vector<ll>>adjList;
 vector<bool>visited;
-// to check whether there is backedge or not we are going to make use of recStack
-vector<bool>recStack;
-bool isCycleUtil(ll v){
-    if(!visited[v]){
-        visited[v]=true;
-        recStack[v]=true;
-        for(auto &u:adjList[v]){
-            // because all possible path from u will be explored at once  
-            if(!visited[u]){
-                if(isCycleUtil(u)){
-                    return true;
-                }
+bool isCycle(ll v,ll parent){
+    visited[v]=true;
+    for(auto &u:adjList[v]){
+        if(!visited[u]){
+            if(isCycle(u,v)){
+                return true;
             }
-            else if(recStack[u]){
+        }
+        else{
+            if(u!=parent){
                 return true;
             }
         }
     }
-    recStack[v]=false;
     return false;
 }
 void solve(){
@@ -44,18 +39,19 @@ void solve(){
     cin>>n>>m;
     adjList.resize(n+1);
     visited.resize(n+1,false);
-    recStack.resize(n+1,false);
     For(i,0,m){
         ll a,b;
         cin>>a>>b;
-        // since it a directed graph
+        // since its a undirected graph;
         adjList[a].pb(b);
+        adjList[b].pb(a);
     }
     For(i,1,n+1){
-        // calling again and again because graph may be disconnected
-        if(isCycleUtil(i)){
-            print("YES");
-            return;
+        if(!visited[i]){
+            if(isCycle(i,-1)){
+                print("YES");
+                return;
+            }
         }
     }
     print("NO");
