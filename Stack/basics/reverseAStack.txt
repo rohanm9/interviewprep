@@ -1,0 +1,3 @@
+if we have to reverse the elements in the same stack
+//1. use insertAtBottom() for every element with one additional stack
+//2. or two more stack  
