@@ -1,5 +1,3 @@
-//rohanm9
-//DA-IICT,Gandhinagar
 //untested programs just to get an overview
 #include<bits/stdc++.h>
 using namespace std;
@@ -17,7 +15,7 @@ using namespace std;
 #define rall(a) a.rbegin(),a.rend()
 #define print(a) cout<<a<<"\n"
 const ll mod = 1e9+7;
-//In interviewbit they have used int val instead of ll data 
+//In interviewbit they have used int val instead of ll data
 struct BstNode{
     ll data;
     BstNode* left;
@@ -29,12 +27,12 @@ BstNode* GetNewNode(ll data){
     newNode->left = newNode->right = NULL
     return newNode;
 }
-// tree is a recursive data structure so Insert deletion searching traversals are going to be recursive 
-// bottom up solution  
+// tree is a recursive data structure so Insert deletion searching traversals are going to be recursive
+// bottom up solution
 BstNode* Insert(BstNode* root,ll data){
     if(root == NULL){
         root = GetNewNode(data);
-    }// just one way of constructing it...i could use less than too 
+    }// just one way of constructing it...i could use less than too
     else if(data <= root->data){
         root->left = Insert(root->left,data);
     }
@@ -69,14 +67,7 @@ ll FindMax(BstNode* root){
     }
     return FindMax(root->right);
 }
-void solve(){
-    // intitialising tree as empty tree
-    BstNode* root = NULL;
-    root = Insert(root,10);
-    root = Insert(root,20);
-    root = Insert(root,5);
-}
-//Bottom up solution optimally choosing  
+//Bottom up solution optimally choosing
 ll height(BstNode* root){
     if(root == NULL) return -1;
     return max(height(root->left),height(root->right))+1;
@@ -93,7 +84,7 @@ void inorder(BstNode* root){
     if(root == NULL) return;
     inorder(root->left);
     print(root->data);
-    inorder(root->right);   
+    inorder(root->right);
 }
 void postorder(BstNode* root){
     if(root == NULL) return;
@@ -114,7 +105,7 @@ void bfs(BstNode* root){
     }
 }
 //Checking whether given tree is binary search or not ... I am going to write 2 solution
-//It is neccessary to use 
+//It is neccessary to use
 bool isBSTUtil(BstNode* root,BstNode* &prev){
     if(root == NULL) return true;
     if(!isBSTUtil(root->left,prev)) return false;
@@ -123,17 +114,67 @@ bool isBSTUtil(BstNode* root,BstNode* &prev){
     return isBSTUtil(root->right,prev);
 }
 bool isBSTUtil(BstNode* root,ll min,ll max){
-
-} 
+        if(root==NULL) return true;
+        if(root->data <= min && root->data >max and isBSTUtil(root->left,min,root->data) and isBSTUtil(root->right,root->data,max)){
+            return true;
+        }
+        else{
+            return false;
+        }
+}
+// another way is using struct of {left_max,right_min,isleftBST,isrightBST}
 bool isBST(BstNode* root){
     //return isBSTUtil(root,NULL);
     return isBSTUtil(root,NINF,INF);
 }
-
-int main(){
-    ios::sync_with_stdio(false),cin.tie(NULL);
-    solve();
+//delete a node in Bst
+Node* Delete(Node* root,int data){
+    if(root==NULL){
+        return root;
+    }
+    else if(data < root->data) root->left = Delete(root->left,data);
+    else if(data > root->data) root->right = Delete(root->right,data);
+    else{
+        if(root->left == NULL and root->right == NULL){
+            delete root;
+            root = NULL;
+        }
+        else if(root->left == NULL){
+            Node* temp = root;
+            root = root->right
+            delete temp;
+        }
+        else if(root->right == NULL){
+            Node* temp = root;
+            root = root->left;
+            delete temp;
+        }
+        else{
+            ll data = FindMin(root->right);
+            root->data = data;
+            root->right = Delete(root->right,data);
+        }
+    }
 }
-// to stop c++ using scientific notation
-// cout.setf(ios::fixed);
-// cout<<setprecision(0)<<value;
+//Find inorder Successor in a BST
+Node* Getsuccessor(Node* root, int data){
+    Node* current = Find(root,data);
+    if(current == NULL) return NULL;
+    if(current->right != NULL){
+        return FindMin(current->right);
+    }
+    else{
+        Node* successor = NULL;
+        Node* ancestor = root;
+        while(ancestor != current){
+            if(current->data < ancestor->data){
+                successor = ancestor;
+                ancestor = ancestor->left;
+            }
+            else
+                ancestor = ancestor->right;
+        }
+        return ancestor;
+    }
+
+}

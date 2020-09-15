@@ -3,7 +3,7 @@ import math
 mod=1000000007
 def solve():
     #start from here
-if __name=="__main__":
+if __name__=="__main__":
     t=int(stdin.readline())
     while t>0:
         solve()
