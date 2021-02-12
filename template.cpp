@@ -1,5 +1,3 @@
-//rohanm9
-//DA-IICT,Gandhinagar
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long
